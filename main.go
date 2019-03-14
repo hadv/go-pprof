@@ -1,7 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"os"
+	"time"
+	"math/rand"
 	"log"
 	"flag"
 	"runtime/pprof"
@@ -20,5 +23,16 @@ func main() {
             log.Fatal("could not start CPU profile: ", err)
 		}
 		defer pprof.StopCPUProfile()
+	}
+
+	rand.Seed(time.Now().UTC().UnixNano())
+	num := 0
+	for {
+		num = rand.Intn(68720001023)
+		fmt.Println(num)
+
+		if num % 20001023 == 0 {
+			break
+		}
 	}
 }
